@@ -28,7 +28,7 @@
         publish = !git push -u origin `git symbolic-ref HEAD | sed -e "s#^refs/heads/##"`
 				# fetch a branch 1 we aren't on, then rebase our branch 2 on it
 				# if you have git-extras, you can replace fetch/rebase with sync
-				pullrebase = "!f() { \n\
+				resync = "!f() { \n\
 					git stash; \n\
 					git fetch ${1} ${2}:${2}; \n\
 					git rebase ${2}; \n\
