@@ -4,19 +4,18 @@ FILEZ=$(patsubst %,$(HOME)/%,$(FILES))
 install: $(FILEZ)
 
 check:
-    @for f in $(FILES) ; do \
-        diff -u $(HOME)/$$f $$f ; \
-    done
+		@for f in $(FILES) ; do \
+			diff -u $(HOME)/$$f $$f ; \
+		done
 
 colorcheck:
-    make check | colordiff | less
+		make check | colordiff | less
 
 getlatest:
-    for i in $(FILES); do cp $(HOME)/$$i .; done
+		for i in $(FILES); do cp $(HOME)/$$i .; done
 
 echo:
-    echo $(FILEZ)
+		echo $(FILEZ)
 
 $(HOME)/%: %
-    cp $< $@
-
+		cp $< $@
