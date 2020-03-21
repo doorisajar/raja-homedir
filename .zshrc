@@ -6,7 +6,7 @@ export PATH="/usr/local/sbin:$PATH"
 # /Library/Frameworks/Python.framework/Versions/3.5/bin:/Library/TeX/texbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/rdoake/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
