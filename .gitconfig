@@ -1,11 +1,11 @@
 # This is Git's per-user configuration file.
 [core]
 # Please adapt and uncomment the following lines:
-	editor = subl --wait
+    editor = subl --wait
     pager = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less
 [user]
-	name = Raja Doake
-	email = rdoake@gmail.com
+    name = Raja Doake
+    email = rdoake@gmail.com
 [color]
     diff = auto
     status = auto
