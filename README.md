@@ -1,1 +1,7 @@
-This is my repository of personal dotfiles used at work and home. It's adapted from here: https://github.com/kenahoo/dotfiles. 
+This is my repository of personal dotfiles used at work and home. 
+
+Pieces are adapted from multiple sources: 
+
+- https://github.com/kenahoo/dotfiles. 
+- https://github.com/zellwk/dotfiles
+- https://github.com/evert/dotfiles
