@@ -116,24 +116,28 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# open current git repo origin in browser, if possible
+# open current git repo origin in browser, if possible. 
+# works for git@ and https:// URLs. 
 repo () {
     local remote=${1:-origin}
     local url=$(git config remote.$remote.url)
-    echo $url
-    local branch=`git_branch`
+    echo "remote is $url"
+    local branch=`git rev-parse --abbrev-ref HEAD | tr -d '\n'`
     zmodload zsh/regex
     if [[ $url -regex-match 'git@([^:]+):(.+)\.git$' ]]
     then
         local url2="https://$match[1]/$match[2]"
+    elif [[ $url -regex-match 'https:\/\/(.+)\.git$' ]]
+    then
+        local url2="https://$match[1]"
+    fi
         if [[ $branch != 'HEAD' ]]
         then
             url2="${url2}/tree/${branch}"
         fi
-        echo $url2
+    echo "opening $url2"
         open $url2
         return
-    fi
     echo "Can't map remote URL '${url}' to web"
 }
 
