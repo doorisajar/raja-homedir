@@ -131,13 +131,13 @@ repo () {
     then
         local url2="https://$match[1]"
     fi
-        if [[ $branch != 'HEAD' ]]
-        then
-            url2="${url2}/tree/${branch}"
-        fi
+    if [[ $branch != 'HEAD' ]]
+    then
+        url2="${url2}/tree/${branch}"
+    fi
     echo "opening $url2"
-        open $url2
-        return
+    open $url2
+    return
     echo "Can't map remote URL '${url}' to web"
 }
 
@@ -157,4 +157,25 @@ rstudio () {
   fi
   cmd="proj <- list.files('$dir', pattern = '*.Rproj$', full.names = TRUE); if (length(proj) > 0) { system(paste('open -na Rstudio', proj[1])) } else { cat('No .Rproj file found in directory.\n') };"
   Rscript -e $cmd
+}
+
+# move config and current git repo into `container`
+docker-populate() {
+    local container=$1
+
+    echo "Copying credentials into container"
+    docker cp ~/.netrc $container:/root/
+    docker cp ~/.ssh $container:/root/
+    docker exec $container chown -R root /root/.netrc /root/.ssh
+    docker exec $container chmod -R 400 /root/.netrc /root/.ssh
+
+    local repo
+    repo=$(git config --local --get remote.origin.url 2>/dev/null)
+    if [[ $? -eq 0 ]]
+    then
+        echo "Cloning $repo into container"
+        docker exec $container git clone "$repo" /tmp/repo
+    else
+        echo "Not in a git repo, skipping clone"
+    fi
 }
