@@ -2,11 +2,12 @@ This is my repository of personal dotfiles used at work and home.
 
 # Basic usage
 - remove old dotfiles
-- run the Makefile
-- install `.zrshrc` dependencies
+- `make install`
+- manually install `.zrshrc` dependencies
 - `omz reload`
+- (optional) `make configs` to copy installable config files
 
-The contents of `configs` are files that (for now) require manual installation.
+Some contents of `configs` are files that (for now) require manual installation, such as the iTerm2 JSON config. 
 
 # TODOs
 - list or detect `.zsrhc` dependencies

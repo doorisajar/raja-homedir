@@ -31,4 +31,7 @@ brew:
 omz:
 	./install-zsh.sh
 
+configs:
+	./install-configs.sh
+
 dotfiles: $(FILE_PATHS)

@@ -1,0 +1,46 @@
+# pilfered from https://gitlab.windlogics.com/Ken.Williams/ken-homedir
+
+[toplevel]
+
+docker-login =
+  !f() {
+    prof=${1:-default}
+    region=$(aws --profile "$prof" configure get region)
+    endpoint=$(aws --profile "$prof" ecr get-authorization-token --output text --query 'authorizationData[].proxyEndpoint')
+    aws --profile "$prof" ecr get-login-password --region "$region" | docker login --username AWS --password-stdin "$endpoint"
+  }; f
+
+
+[command ecr]
+
+get-repositories =
+  !f() {
+    aws ecr describe-repositories | jq -r '.repositories[].repositoryName' | sort
+  }; f
+
+get-tags =
+  !f() {
+    [ -n "$1" ] || { echo "Usage: aws get-tags-long <repositoryname>"; return 1; }
+    aws ecr describe-images --repository-name "${1}"  | jq -r '.imageDetails[].imageTags[]' | sort
+  }; f
+
+get-tags-long =
+  !f() {
+    [ -n "$1" ] || { echo "Usage: aws get-tags-long <repositoryname>"; return 1; }
+    aws ecr describe-images --repository-name "${1}"  |
+      jq -r '.imageDetails[] | [(.imageDigest | sub("sha256:(?<x>........).*"; .x)), .imagePushedAt, "[" + (.imageTags // [] | join(", ")) + "]"] | @tsv' |
+      sort -k3 -t$'\t'
+  }; f
+
+[command ec2]
+
+instances =
+  !f() {
+    keypair=$1
+    [ -n "$keypair" ] || { echo "Usage: aws instances <keypair>"; return 1; }
+    local criteria
+    criteria="--filters Name=instance-state-name,Values=running --filters Name=key-name,Values=$keypair"
+
+    aws ec2 describe-instances $criteria | \
+        jq -S --color-output '.Reservations[].Instances[] | {InstanceId, PrivateIpAddress, LaunchTime, InstanceType, "State": .State.Name, "Tags": (.Tags | sort_by(.Key) | map({(.Key): .Value}) | add)}'
+  }; f
