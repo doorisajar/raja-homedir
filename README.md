@@ -4,7 +4,7 @@ This is my repository of personal dotfiles used at work and home.
 - remove old dotfiles
 - run the Makefile
 - install `.zrshrc` dependencies
-- `source ~/.zshrc`
+- `omz reload`
 - `startup.jl` isn't usable before installing Julia and the required packages
 
 # TODOs
