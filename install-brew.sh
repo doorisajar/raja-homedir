@@ -24,4 +24,7 @@ brew install juliaup
 brew tap r-lib/rig
 brew install --cask rig
 
+# other useful casks
+brew install --cask iterm2
+
 brew cleanup
