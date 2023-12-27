@@ -5,7 +5,8 @@ This is my repository of personal dotfiles used at work and home.
 - run the Makefile
 - install `.zrshrc` dependencies
 - `omz reload`
-- `startup.jl` isn't usable before installing Julia and the required packages
+
+The contents of `configs` are files that (for now) require manual installation.
 
 # TODOs
 - list or detect `.zsrhc` dependencies
