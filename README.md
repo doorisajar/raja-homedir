@@ -3,7 +3,7 @@ This is my repository of personal dotfiles used at work and home.
 # Basic usage
 - remove old dotfiles
 - `make install`
-- manually install `.zrshrc` dependencies
+- manually install `.zshrc` dependencies
 - `omz reload`
 - (optional) `make configs` to copy installable config files
 
