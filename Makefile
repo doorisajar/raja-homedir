@@ -1,6 +1,8 @@
 SHELL=/bin/bash
 FILES=.Rprofile .gitconfig .zshrc
-FILEZ=$(patsubst %,$(HOME)/%,$(FILES))
+
+# Prepend homedir path to each file
+FILE_PATHS=$(patsubst %,$(HOME)/%,$(FILES))
 
 install: brew omz dotfiles
 
@@ -16,8 +18,10 @@ getlatest:
 	for i in $(FILES); do cp $(HOME)/$$i .; done
 
 echo:
-	echo $(FILEZ)
+	echo $(FILE_PATHS)
 
+# Rule: $(HOME)/%
+# Copies the corresponding file from the current directory to the home directory
 $(HOME)/%: %
 	cp $< $@
 
@@ -27,4 +31,4 @@ brew:
 omz:
 	./install-zsh.sh
 
-dotfiles: $(FILEZ)
+dotfiles: $(FILE_PATHS)
