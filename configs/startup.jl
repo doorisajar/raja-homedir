@@ -1,4 +1,5 @@
-using MKL
+# use MKL, AppleAccelerate, or nothing (?) on AMD
+# using AppleAccelerate
 using BenchmarkTools
 using Infiltrator
 using Revise
@@ -18,6 +19,7 @@ atreplinit() do repl
 end
 
 
+# allows you to run a script from the REPL so you can hit infiltration points.
 # usage: run_with_args("../src/subparcel_driver.jl", "examples/input_tracking.json")
 function run_with_args(script, args...)
     empty!(ARGS)
