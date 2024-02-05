@@ -74,3 +74,32 @@ hexdiff () {
     hexdump -C $2 > /tmp/${2:t}
     git diff "$@[3,-1]" --no-index /tmp/${1:t} /tmp/${2:t}
 }
+
+# Julia utils
+function deinfil() {
+    find . -name "*.jl" -type f -print0 | while IFS= read -r -d $'\0' file;
+    do
+        awk '!/#.*Main.@infiltrate/{ if(gsub(/Main.@infiltrate/,"# &")) { print "Commenting out line " NR " in file " FILENAME > "/dev/stderr" }}1' "${file}" > "${file}.tmp" && mv "${file}.tmp" "${file}"
+    done
+}
+
+function reinfil() {
+    find . -name "*.jl" -type f -print0 | while IFS= read -r -d $'\0' file;
+    do
+        awk '{ if(gsub(/# Main.@infiltrate/,"Main.@infiltrate")) { print "Commenting out line " NR " in file " FILENAME > "/dev/stderr" }}1' "${file}" > "${file}.tmp" && mv "${file}.tmp" "${file}"
+    done
+}
+
+
+# run Documenter.jl doc build in from repo root
+documenter () {
+
+    julia --project=docs -e 'using Pkg;
+            Pkg.instantiate();
+            Pkg.develop(PackageSpec(path=pwd()))'
+
+    julia --project=docs --color=yes docs/make.jl
+
+    # git revert docs/Project.toml
+
+}
