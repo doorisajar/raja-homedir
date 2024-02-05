@@ -86,7 +86,7 @@ function deinfil() {
 function reinfil() {
     find . -name "*.jl" -type f -print0 | while IFS= read -r -d $'\0' file;
     do
-        awk '{ if(gsub(/# Main.@infiltrate/,"Main.@infiltrate")) { print "Commenting out line " NR " in file " FILENAME > "/dev/stderr" }}1' "${file}" > "${file}.tmp" && mv "${file}.tmp" "${file}"
+        awk '{ if(gsub(/# Main.@infiltrate/,"Main.@infiltrate")) { print "Uncommenting line " NR " in file " FILENAME > "/dev/stderr" }}1' "${file}" > "${file}.tmp" && mv "${file}.tmp" "${file}"
     done
 }
 
