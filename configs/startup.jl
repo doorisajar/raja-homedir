@@ -1,6 +1,7 @@
 # use MKL, AppleAccelerate, or nothing (?) on AMD
 # using AppleAccelerate
 using BenchmarkTools
+using Cthulhu
 using Infiltrator
 using Revise
 using TestEnv
