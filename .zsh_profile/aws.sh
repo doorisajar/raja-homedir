@@ -1,7 +1,7 @@
 # pilfered from https://gitlab.windlogics.com/Jordan.Love/dotfiles
 
 # awsaccid: Get AWS account ID for default or specified profile
-awsaccount () {
+awsaccount() {
    if [[ $1 == "-p" ]]
    then
      profile=$2

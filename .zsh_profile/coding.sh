@@ -1,6 +1,6 @@
 # open current git repo origin in browser, if possible. 
 # works for git@ and https:// URLs. 
-repo () {
+repo() {
     local remote=${1:-origin}
     local url=$(git config remote.$remote.url)
     echo "remote is $url"
@@ -24,14 +24,14 @@ repo () {
 }
 
 # get the changelog for the current repo
-changelog () {
+changelog() {
        echo "Version XX  " $(date)
        echo "---------------------------"
        git --no-pager changelog $1..
 }
 
 # open an R project in RStudio
-rstudio () {
+rstudio() {
   if [ -z "$1" ] ; then
     dir="."
   else
@@ -50,7 +50,7 @@ detab() {
 # Use ffpmeg and imagemagick to quickly convert a .mov to a .gif.
 # Primarily used for quickly converting screencasts
 # into gifs (which can then be viewed online easily)
-mov2gif () {
+mov2gif() {
     # Seen at https://community.rstudio.com/t/is-there-a-way-to-record-code-typing-and-execution-as-a-video-gif-etc-in-rstudio/13614/8
 
     if [ "$#" -eq 0 ]; then
@@ -59,17 +59,17 @@ mov2gif () {
     fi
 
     if [ "$#" -eq 1 ]; then
-	    OUTPUT="${1%.mov}".gif
+        OUTPUT="${1%.mov}".gif
     else
-	    OUTPUT="$2"
+        OUTPUT="$2"
     fi
 
     ffmpeg -i "$1" -r 20 -f image2pipe -vcodec ppm - | \
-	convert -delay 5 -fuzz 1% -layers Optimize -loop 0 - "${OUTPUT}"
+    convert -delay 5 -fuzz 1% -layers Optimize -loop 0 - "${OUTPUT}"
 }
 
 # binary diff of 2 files
-hexdiff () {
+hexdiff() {
     hexdump -C $1 > /tmp/${1:t}
     hexdump -C $2 > /tmp/${2:t}
     git diff "$@[3,-1]" --no-index /tmp/${1:t} /tmp/${2:t}
@@ -92,7 +92,7 @@ function reinfil() {
 
 
 # run Documenter.jl doc build in from repo root
-documenter () {
+documenter() {
 
     julia --project=docs -e 'using Pkg;
             Pkg.instantiate();
