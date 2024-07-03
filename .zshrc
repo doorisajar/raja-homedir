@@ -4,10 +4,15 @@
 # path prepend for Homebrew
 PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
-ME=$(whoami)
+unameOut="$(uname -s)"
+case "${unameOut}" in
+  Linux*)     MACHINE=Linux;;
+  Darwin*)    MACHINE=Mac;;
+  *)          MACHINE="UNKNOWN:${unameOut}"
+esac
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/$ME/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # pyenv setup
 export PYENV_ROOT="$HOME/.pyenv"
@@ -32,7 +37,15 @@ HIST_STAMPS="yyyy-mm-dd"
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Note that zsh-syntax-highlighting must be the last plugin sourced.
-plugins=(aws brew copyfile colored-man-pages git gitfast git-extras macos ssh-agent z zsh-autosuggestions zsh-syntax-highlighting)
+if [[ $MACHINE == "Mac" ]]; then
+    source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    plugins=(aws brew copyfile colored-man-pages git gitfast git-extras macos ssh-agent z)
+elif [[ $MACHINE == "Linux" ]]; then
+    source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source $ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+    plugins=(aws copyfile colored-man-pages git gitfast git-extras macos ssh-agent z)
+fi
 
 # ssh-agent setup
 zstyle :omz:plugins:ssh-agent agent-forwarding on
@@ -45,4 +58,6 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-for f in ~/.profile/*.sh; do source $f; done
+if [ -d "$HOME/.zsh_profile.d" ]; then
+    for f in $HOME/.zsh_profile/*.sh; do source $f; done
+fi
