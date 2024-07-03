@@ -4,12 +4,11 @@
 # path prepend for Homebrew
 PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
-unameOut="$(uname -s)"
-case "${unameOut}" in
-  Linux*)     MACHINE=Linux;;
-  Darwin*)    MACHINE=Mac;;
-  *)          MACHINE="UNKNOWN:${unameOut}"
-esac
+if ! which brew > /dev/null 2>&1; then
+    BREW=false
+else
+    BREW=true
+fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -37,11 +36,11 @@ HIST_STAMPS="yyyy-mm-dd"
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Note that zsh-syntax-highlighting must be the last plugin sourced.
-if [[ $MACHINE == "Mac" ]]; then
+if [[ $BREW == true ]]; then
     source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
     plugins=(aws brew copyfile colored-man-pages git gitfast git-extras macos ssh-agent z)
-elif [[ $MACHINE == "Linux" ]]; then
+elif [[ $BREW == false ]]; then
     source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     source $ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     plugins=(aws copyfile colored-man-pages git gitfast git-extras macos ssh-agent z)
