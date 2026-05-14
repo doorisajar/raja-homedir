@@ -7,12 +7,12 @@ This is my repository of personal dotfiles used at work and home.
 - `omz reload`
 - (optional) `make configs` to copy installable config files
 
-## No-sudo Linux flow
+## No-sudo Linux variant
 
 On a fresh Linux box where `brew`/`apt` aren't available:
 
 1. `make eget` — bootstrap `eget` into `~/bin`
-2. `make eget-tools` — install common binaries (bat, eza, fzf, ripgrep, jq, yq, delta, gh, direnv, micro, hyperfine, tealdeer) via eget, skipping any already on PATH
+2. `make eget-tools` — install common binaries via eget, skipping any already on PATH
 3. `make dotfiles` — copy tracked dotfiles into `$HOME`
 
 Some contents of `configs` are files that (for now) require manual installation, such as the iTerm2 JSON config. 
