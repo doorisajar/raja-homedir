@@ -1,8 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# path prepend for Homebrew
-PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+# path prepend for Homebrew & postpend for local binaries on remote boxes without sudo
+PATH="/usr/local/bin:/usr/local/sbin:$PATH:$HOME/bin:$HOME/.local/bin/"
 
 if ! which brew > /dev/null 2>&1; then
     BREW=false
@@ -46,17 +46,21 @@ HIST_STAMPS="yyyy-mm-dd"
 if [[ $BREW == true ]]; then
     source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-    plugins=(aws brew copyfile colored-man-pages git gitfast git-extras ssh-agent z)
+    export NVM_HOMEBREW=$(brew --prefix nvm)
+    plugins=(aws brew copyfile colored-man-pages git gitfast git-extras nvm ssh-agent z)
 elif [[ $BREW == false ]]; then
     source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     source $ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-    plugins=(aws copyfile colored-man-pages git gitfast git-extras ssh-agent z)
+    plugins=(aws copyfile colored-man-pages git gitfast git-extras nvm ssh-agent z)
 fi
 
 # ssh-agent setup
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 
 zstyle :omz:plugins:ssh-agent identities github
+
+# nvm setup
+zstyle :omz:plugins:nvm lazy yes
 
 source $ZSH/oh-my-zsh.sh
 
@@ -72,3 +76,10 @@ fi
 if [[ "$(pwd)" == "/mnt/c/Users/Raja/" ]]; then
     cd ~
 fi
+
+export EGET_BIN=~/bin
+
+# try direnv
+eval "$(direnv hook zsh)"
+
+. "$HOME/.local/bin/env"
