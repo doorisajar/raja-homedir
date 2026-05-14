@@ -14,7 +14,7 @@ brew install fzf
 brew install htop
 brew install hyperfine
 brew install micro
-brew install tldr
+brew install tealdeer
 brew install tmux
 
 # file utils

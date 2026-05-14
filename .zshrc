@@ -79,6 +79,9 @@ fi
 
 export EGET_BIN=~/bin
 
+# fzf shell integration (written by install-eget-tools.sh)
+[[ -f "$HOME/.fzf.zsh" ]] && source "$HOME/.fzf.zsh"
+
 # try direnv
 eval "$(direnv hook zsh)"
 

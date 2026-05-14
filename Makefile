@@ -34,4 +34,10 @@ omz:
 configs:
 	./install-configs.sh
 
+eget:
+	./install-eget.sh
+
+eget-tools: eget
+	./install-eget-tools.sh
+
 dotfiles: $(FILE_PATHS)
