@@ -18,8 +18,14 @@ On a fresh Linux box where `brew`/`apt` aren't available:
 Some contents of `configs` are files that (for now) require manual installation, such as the iTerm2 JSON config. 
 
 # TODOs
-- list or detect `.zshrc` dependencies
 - consider migrating to chezmoi
+- list or detect `.zshrc` dependencies
+- for the no-sudo Linux case, maybe add an option to put the following in .bash_profile:
+```bash
+[[ $- == *i* ]] && exec /usr/bin/zsh
+
+. "$HOME/.local/bin/env"
+```
 
 # make targets
 - `install`: install all deps and copy dotfiles to the homedir
