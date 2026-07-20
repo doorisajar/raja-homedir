@@ -47,11 +47,11 @@ if [[ $BREW == true ]]; then
     source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
     export NVM_HOMEBREW=$(brew --prefix nvm)
-    plugins=(aws brew copyfile colored-man-pages git gitfast git-extras nvm ssh-agent z)
+    plugins=(aws brew copyfile colored-man-pages git gitfast git-extras nvm ssh-agent z zsh-eza)
 elif [[ $BREW == false ]]; then
     source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     source $ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-    plugins=(aws copyfile colored-man-pages git gitfast git-extras nvm ssh-agent z)
+    plugins=(aws copyfile colored-man-pages git gitfast git-extras nvm ssh-agent z zsh-eza)
 fi
 
 # ssh-agent setup
