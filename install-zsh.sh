@@ -14,13 +14,13 @@ echo $MACHINE
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   # Installs Oh my ZSH on Mac
   if [[ $MACHINE == "Mac" ]]; then
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   fi
 
   # On Linux, need to ensure zsh is installed first
   if [[ $MACHINE == "Linux" ]]; then
     sudo apt install zsh -y
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   fi
 fi
 
@@ -31,5 +31,5 @@ ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-# Fix permissions
-chmod 700 ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+# Fix permissions, uncomment if necessary
+# chmod 700 ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
