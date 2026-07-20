@@ -1,5 +1,5 @@
 SHELL=/bin/bash
-FILES=.Rprofile .gitconfig .zshrc
+FILES=.Rprofile .gitconfig .zshrc .zsh_profile
 
 # Prepend homedir path to each file
 FILE_PATHS=$(patsubst %,$(HOME)/%,$(FILES))
@@ -23,7 +23,7 @@ echo:
 # Rule: $(HOME)/%
 # Copies the corresponding file from the current directory to the home directory
 $(HOME)/%: %
-	cp $< $@
+	cp -r $< $@
 
 brew:
 	./install-brew.sh
