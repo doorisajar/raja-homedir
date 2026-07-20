@@ -1,7 +1,6 @@
 #!/bin/bash
 
-echo "Copying AWS CLI and Julia configs"
+echo "Copying Julia config"
 
-cp configs/awscli ~/.aws/cli/aws
-
+mkdir -p ~/.julia/config
 cp configs/startup.jl ~/.julia/config/
