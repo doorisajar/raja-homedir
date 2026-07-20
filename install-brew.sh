@@ -16,6 +16,7 @@ brew install hyperfine
 brew install micro
 brew install tealdeer
 brew install tmux
+brew install direnv
 
 # file utils
 brew install jq
@@ -25,8 +26,9 @@ brew install yq
 brew install juliaup
 brew install pyenv
 
-brew tap r-lib/rig
-brew install --cask rig
+# this tap has become untrusted
+# brew tap r-lib/rig
+# brew install --cask rig
 
 # other useful casks
 brew install --cask iterm2
