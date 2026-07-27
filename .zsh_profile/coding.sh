@@ -1,3 +1,10 @@
+# make a folder, cd into it, init a repo
+mcg() {
+	mkdir $1
+	cd $1
+	git init
+}
+
 # open current git repo origin in browser, if possible. 
 # works for git@ and https:// URLs. 
 repo() {
@@ -90,6 +97,14 @@ function reinfil() {
     done
 }
 
+pkg() {
+	julia -e '
+		using PkgTemplates;
+		dir = ARGS[1];
+		t = Template(dir="."; plugins=[Documenter, !License, !GitHubActions, !Dependabot, !TagBot]);
+	    t(ARGS[1])
+	    ' "$1"
+}
 
 # run Documenter.jl doc build in from repo root
 documenter() {
