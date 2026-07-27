@@ -1,8 +1,10 @@
 SHELL=/bin/bash
-FILES=.Rprofile .gitconfig .zshrc .zsh_profile
+FILES=.Rprofile .gitconfig .zshrc
+ZFILES=aws.sh coding.sh docker.sh gcp.sh macos.sh
 
 # Prepend homedir path to each file
 FILE_PATHS=$(patsubst %,$(HOME)/%,$(FILES))
+ZPROFILE_PATHS=$(patsubst %,$(HOME)/.zsh_profile/%,$(ZFILES))
 
 install: brew omz dotfiles
 
@@ -16,6 +18,7 @@ colorcheck:
 
 getlatest:
 	for i in $(FILES); do cp $(HOME)/$$i .; done
+	for i in $(ZFILES); do cp $(HOME)/.zsh_profile/$$i ./.zsh_profile/$$i; done
 
 echo:
 	echo $(FILE_PATHS)
