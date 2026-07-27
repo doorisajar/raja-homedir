@@ -22,6 +22,7 @@ getlatest:
 
 echo:
 	echo $(FILE_PATHS)
+	echo $(ZPROFILE_PATHS)
 
 # Rule: $(HOME)/%
 # Copies the corresponding file from the current directory to the home directory
