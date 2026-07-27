@@ -77,6 +77,8 @@ if [[ "$(pwd)" == "/mnt/c/Users/Raja/" ]]; then
     cd ~
 fi
 
+export JULIA_NUM_THREADS="auto"
+
 export EGET_BIN=~/bin
 
 # fzf shell integration (written by install-eget-tools.sh)
@@ -84,5 +86,3 @@ export EGET_BIN=~/bin
 
 # try direnv
 eval "$(direnv hook zsh)"
-
-. "$HOME/.local/bin/env"
