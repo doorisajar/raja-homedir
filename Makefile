@@ -1,5 +1,5 @@
 SHELL=/bin/bash
-FILES=.Rprofile .gitconfig .zshrc
+FILES=.Rprofile .gitconfig .zshrc .tmux.conf
 ZFILES=aws.sh coding.sh docker.sh gcp.sh macos.sh
 
 # Prepend homedir path to each file
