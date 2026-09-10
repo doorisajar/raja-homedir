@@ -18,6 +18,10 @@ brew install tealdeer
 brew install tmux
 brew install direnv
 
+# coding assistant tooling
+brew install pi
+brew install nono
+
 # file utils
 brew install jq
 brew install yq
