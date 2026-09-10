@@ -9,7 +9,7 @@ brew tap homebrew/cask
 
 # shell utils
 brew install bat
-brew install exa
+brew install eza
 brew install fzf
 brew install htop
 brew install hyperfine
