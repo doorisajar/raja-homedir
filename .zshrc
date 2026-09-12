@@ -4,6 +4,10 @@
 # path prepend for Homebrew & postpend for local binaries on remote boxes without sudo
 PATH="/usr/local/bin:/usr/local/sbin:$PATH:$HOME/bin:$HOME/.local/bin/"
 
+if uname -o | grep -q 'GNU/Linux' ; then
+	export PATH="/usr/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
+fi
+
 if ! which brew > /dev/null 2>&1; then
     BREW=false
 else
@@ -24,7 +28,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
 if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
+ 	eval "$(pyenv init -)"
 fi
 
 # Set name of the theme to load
