@@ -19,7 +19,7 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
 
   # On Linux, need to ensure zsh is installed first
   if [[ $MACHINE == "Linux" ]]; then
-    if ! which zsh > /dev/null 2>&1; then
+    if which zsh > /dev/null 2>&1; then
       echo "ZSH not installed; can't install oh-my-zsh. Exiting."
       exit 1
     fi    
