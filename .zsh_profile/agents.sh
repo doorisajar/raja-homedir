@@ -4,7 +4,7 @@
 nopi() {
   local base="pi-s1"
   # Generated names replace the numeric suffix; they do not append to it.
-  local session_prefix="${base%-[0-9]*}"
+  local session_prefix="${base%[0-9]*}"
   local session_name
   local next
 
@@ -28,12 +28,12 @@ nopi() {
             '
         )"
 
-        session_name="${session_prefix}-${next}"
+        session_name="${session_prefix}${next}"
 
         # Avoid a collision if numbered sessions were removed out of order.
         while tmux has-session -t "=$session_name" 2>/dev/null; do
           next=$((next + 1))
-          session_name="${session_prefix}-${next}"
+          session_name="${session_prefix}${next}"
         done
       fi
       ;;
@@ -51,5 +51,5 @@ nopi() {
   esac
 
   tmux new-session -s "$session_name" \
-    'exec nono run --profile pi -- pi'
+    'exec nono run --allow-cwd --profile pi -- pi'
 }
