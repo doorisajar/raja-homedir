@@ -9,9 +9,9 @@ nopi() {
   launch_slug="$(printf '%s' "$launch_dir" | tr -cs '[:alnum:]_-' '-' | sed 's/^-*//; s/-*$//')"
   [ -n "$launch_slug" ] || launch_slug="root"
 
-  local base="pi-s1-${launch_slug}"
+  local base="pi1-${launch_slug}"
   # Generated names replace the numeric suffix; they do not append to it.
-  local session_prefix="pi-s"
+  local session_prefix="pi"
   local session_name
   local next
 
@@ -26,7 +26,7 @@ nopi() {
         next="$(
           tmux list-sessions -F '#S' 2>/dev/null |
             awk -v slug="$launch_slug" '
-              $0 ~ "^pi-s[0-9]+-" slug "$" {
+              $0 ~ "^pi[0-9]+-" slug "$" {
                 count++
               }
               END {
