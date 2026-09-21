@@ -1,3 +1,6 @@
+# uncomment to profile
+# zmodload zsh/zprof
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -90,3 +93,6 @@ export EGET_BIN=~/bin
 
 # try direnv
 eval "$(direnv hook zsh)"
+
+# uncomment to profile
+# zprof
