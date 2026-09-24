@@ -30,7 +30,8 @@
     	"/bin/ps"
     ],
     "read": [
-      "$HOME/.julia"
+      "$HOME/.julia",
+      "$HOME/.pi/agent/sessions"
     ],
     "write": [
       "$HOME/.julia/compiled",
